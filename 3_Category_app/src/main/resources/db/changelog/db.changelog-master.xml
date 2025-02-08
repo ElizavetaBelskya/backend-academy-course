@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="1" author="admin">
+
+    </changeSet>
+    <changeSet id="10" author="Elizaveta">
+        <createTable tableName="category">
+            <column name="id" type="VARCHAR(255)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_category"/>
+            </column>
+            <column name="url" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="title" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="11" author="Elizaveta">
+        <createTable tableName="product">
+            <column name="item_number" type="VARCHAR(255)">
+                <constraints primaryKey="true" primaryKeyName="pk_product"/>
+            </column>
+            <column name="title" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="price" type="FLOAT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="quantity" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="category_id" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="10-1" author="Elizaveta">
+        <addUniqueConstraint columnNames="title" constraintName="uc_category_title" tableName="category"/>
+    </changeSet>
+    <changeSet id="10-2" author="Elizaveta">
+        <addUniqueConstraint columnNames="url" constraintName="uc_category_url" tableName="category"/>
+    </changeSet>
+    <changeSet id="11-1" author="Elizaveta">
+        <addForeignKeyConstraint baseColumnNames="category_id" baseTableName="product"
+                                 constraintName="FK_PRODUCT_ON_CATEGORY" referencedColumnNames="id"
+                                 referencedTableName="category"/>
+    </changeSet>
+</databaseChangeLog>

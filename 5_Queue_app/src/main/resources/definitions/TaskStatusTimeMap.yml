@@ -1,0 +1,7 @@
+type: object
+properties:
+    times:
+      type: object
+      additionalProperties:
+        type: number
+        format: double

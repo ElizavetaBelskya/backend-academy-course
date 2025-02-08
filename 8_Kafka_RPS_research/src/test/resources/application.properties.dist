@@ -1,0 +1,11 @@
+spring.application.name=kafkatesting
+application.first.start=true
+
+spring.jpa.generate-ddl=true
+spring.datasource.hikari.maximum-pool-size=12
+spring.datasource.driver-class-name=org.postgresql.Driver
+spring.datasource.url=
+spring.datasource.username=
+spring.datasource.password=
+data.a.count=1_000_000
+data.b.count=1_000_000

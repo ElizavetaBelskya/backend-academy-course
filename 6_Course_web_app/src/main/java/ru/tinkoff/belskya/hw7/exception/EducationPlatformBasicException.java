@@ -1,0 +1,17 @@
+package ru.tinkoff.belskya.hw7.exception;
+
+import org.springframework.http.HttpStatus;
+
+public abstract class EducationPlatformBasicException extends RuntimeException {
+
+    private HttpStatus status;
+
+    public EducationPlatformBasicException(String message, HttpStatus status) {
+        super(message);
+        this.status = status;
+    }
+
+    public HttpStatus getStatus() {
+        return status;
+    }
+}

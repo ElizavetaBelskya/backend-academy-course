@@ -1,0 +1,26 @@
+version: '3.3'
+
+services:
+  postgres:
+    image: postgres
+    container_name: postgres
+    environment:
+      - POSTGRES_DB=topics
+
+  redis:
+    image:
+      redis
+    container_name:
+      redis
+    ports:
+      - "6380:6380"
+
+  mongo:
+      image: mongo
+      ports:
+        - '27017:27017'
+      container_name: mongo
+      environment:
+        - "MONGO_INITDB_DATABASE=test"
+
+

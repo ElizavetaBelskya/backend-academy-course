@@ -1,0 +1,47 @@
+GET http://localhost:8080/product
+
+###
+POST http://localhost:8080/product
+Content-Type: application/json
+
+{
+    "itemNumber": "2",
+    "title": "Apple",
+    "price": 10.9,
+    "quantity": 100
+}
+
+###
+PUT http://localhost:8080/product/5
+Content-Type: application/json
+
+{
+  "title": "Pear",
+  "price": 12.99,
+  "quantity": 150
+}
+
+###
+DELETE http://localhost:8080/product/9
+###
+POST http://localhost:8080/category
+Content-Type: application/json
+
+{
+  "title": "category2"
+}
+
+###
+POST http://localhost:8080/move-products-task
+Content-Type: application/json
+
+{
+  "sourceCategoryId": "8981B075BB3343BD971A4D7B34BBE013",
+  "targetCategoryId": "0CBB9CB767774B2D8B765D1B8ECA6737"
+}
+
+
+###
+
+GET http://localhost:8080/task-status?taskId=352
+

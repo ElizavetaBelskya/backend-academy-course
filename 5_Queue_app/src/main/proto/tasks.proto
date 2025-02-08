@@ -1,0 +1,54 @@
+syntax = "proto3";
+
+package ru.seminar.homework.hw5.grpc;
+
+message TaskDto {
+  string number = 1;
+  string status = 2;
+  map<string, double> times = 3;
+}
+
+
+
+message ErrorResponse {
+  string error_name = 1;
+}
+
+message getNextWaitingTaskResponse {
+  TaskDto taskDto = 1;
+
+}
+
+message getNextWaitingTaskRequest {
+}
+
+message updateTaskStatusResponse {
+  TaskDto taskDto = 1;
+}
+
+message updateTaskStatusRequest {
+  string number = 1;
+  string new_status = 2;
+}
+
+message createTaskResponse {
+  TaskDto taskDto = 1;
+}
+
+message createTaskRequest {
+}
+
+message deleteTaskRequest {
+  string number = 1;
+}
+
+message deleteTaskResponse {
+
+}
+
+service TaskService {
+  rpc GetNextWaitingTask (getNextWaitingTaskRequest) returns (getNextWaitingTaskResponse);
+  rpc UpdateTaskStatus (updateTaskStatusRequest) returns (updateTaskStatusResponse);
+  rpc CreateTask (createTaskRequest) returns (createTaskResponse);
+  rpc DeleteTask (deleteTaskRequest) returns (deleteTaskResponse);
+}

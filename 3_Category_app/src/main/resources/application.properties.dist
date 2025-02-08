@@ -1,0 +1,13 @@
+server.port=8080
+product.repository.impl=ram
+category.repository.impl=ram
+csv.file.path.product=
+csv.file.path.category=
+spring.datasource.url=
+spring.datasource.driver-class-name=org.postgresql.Driver
+spring.datasource.platform=
+spring.datasource.username=
+spring.datasource.password=
+
+spring.jpa.hibernate.ddl-auto=none
+liquibase.change-log=classpath:liquibase-changeLog.xml

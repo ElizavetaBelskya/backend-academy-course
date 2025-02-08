@@ -1,0 +1,8 @@
+type: object
+properties:
+  tasksByStatus:
+    type: object
+    additionalProperties:
+      type: array
+      items:
+        $ref: TaskDto.yml

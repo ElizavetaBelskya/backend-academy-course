@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.example.com/soap"
+           targetNamespace="http://www.example.com/soap" elementFormDefault="qualified">
+
+    <xs:element name="GetNextWaitingTaskRequest" type="tns:GetNextWaitingTaskRequest">
+    </xs:element>
+
+    <xs:complexType name="GetNextWaitingTaskRequest">
+    </xs:complexType>
+
+    <xs:element name="GetNextWaitingTaskResponse" type="tns:GetNextWaitingTaskResponse">
+    </xs:element>
+
+    <xs:complexType name="GetNextWaitingTaskResponse">
+        <xs:sequence>
+            <xs:element name="taskDto" type="tns:TaskDto"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:element name="UpdateTaskStatusRequest" type="tns:UpdateTaskStatusRequest"/>
+
+    <xs:complexType name="UpdateTaskStatusRequest">
+        <xs:sequence>
+            <xs:element name="number" type="xs:string"/>
+            <xs:element name="newStatus" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="UpdateTaskStatusResponse" type="tns:UpdateTaskStatusResponse"/>
+
+    <xs:complexType name="UpdateTaskStatusResponse">
+        <xs:sequence>
+            <xs:element name="taskDto" type="tns:TaskDto"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="CreateTaskRequest" type="tns:CreateTaskRequest"/>
+
+    <xs:complexType name="CreateTaskRequest">
+    </xs:complexType>
+
+    <xs:element name="CreateTaskResponse" type="tns:CreateTaskResponse"/>
+
+    <xs:complexType name="CreateTaskResponse">
+        <xs:sequence>
+            <xs:element name="taskDto" type="tns:TaskDto"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="DeleteTaskRequest" type="tns:DeleteTaskRequest"/>
+
+    <xs:complexType name="DeleteTaskRequest">
+        <xs:sequence>
+            <xs:element name="number" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:element name="DeleteTaskResponse" type="tns:DeleteTaskResponse"/>
+
+    <xs:complexType name="DeleteTaskResponse">
+    </xs:complexType>
+
+
+    <xs:complexType name="TaskDto">
+        <xs:sequence>
+            <xs:element name="number" type="xs:string"/>
+            <xs:element name="status" type="xs:string"/>
+            <xs:element name="times" maxOccurs="unbounded">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="status" type="xs:string"/>
+                        <xs:element name="time" type="xs:double"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+
+</xs:schema>

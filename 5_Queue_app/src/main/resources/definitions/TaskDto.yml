@@ -1,0 +1,11 @@
+type: object
+properties:
+  number:
+    type: string
+  status:
+    type: string
+  times:
+    type: object
+    additionalProperties:
+      type: number
+      format: double

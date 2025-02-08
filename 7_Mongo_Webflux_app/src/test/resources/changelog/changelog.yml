@@ -1,0 +1,4 @@
+databaseChangeLog:
+  - include:
+      file: create-topic-relation-table.sql
+      relativeToChangelogFile: true

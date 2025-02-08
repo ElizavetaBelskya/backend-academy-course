@@ -1,0 +1,197 @@
+swagger: '2.0'
+info:
+  title: Task API
+  description: API for managing tasks
+  version: 1.0.0
+basePath: /api
+tags:
+  - name: Task
+    description: Operations related to tasks
+schemes:
+  - http
+  - https
+
+produces:
+  - application/json
+
+definitions:
+  TaskDto:
+    $ref: ./definitions/TaskDto.yml
+  ExceptionDto:
+    $ref: ./definitions/ExceptionDto.yml
+  ValidationErrorDto:
+    $ref: ./definitions/ValidationErrorDto.yml
+  TaskStatus:
+    $ref: ./definitions/TaskStatus.yml
+  TaskStatusTimeMap:
+    $ref: ./definitions/TaskStatusTimeMap.yml
+
+paths:
+  /task:
+    post:
+      tags:
+        - Task
+      summary: Create a task
+      operationId: createTask
+      responses:
+        201:
+          description: Task created successfully
+          schema:
+            $ref: '#/definitions/TaskDto'
+        400:
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/ValidationErrorDto'
+    get:
+      tags:
+        - Task
+      summary: Get the next waiting task
+      operationId: getNextWaitingTask
+      responses:
+        200:
+          description: Task retrieved successfully
+          schema:
+            $ref: '#/definitions/TaskDto'
+        404:
+          description: Task not found
+          schema:
+            $ref: '#/definitions/ExceptionDto'
+
+  /task/{number}:
+    patch:
+      tags:
+        - Task
+      summary: Update task status
+      operationId: updateTaskStatus
+      parameters:
+        - name: number
+          in: path
+          required: true
+          type: string
+        - name: newStatus
+          in: query
+          required: true
+          type: string
+          enum:
+            - IN_PROGRESS
+            - DONE
+      responses:
+        202:
+          description: Task status updated successfully
+          schema:
+            $ref: '#/definitions/TaskDto'
+        400:
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/ValidationErrorDto'
+        404:
+          description: Task not found
+          schema:
+            $ref: '#/definitions/ExceptionDto'
+    delete:
+      tags:
+        - Task
+      summary: Delete a task
+      operationId: deleteTask
+      parameters:
+        - name: number
+          in: path
+          required: true
+          type: string
+      responses:
+        204:
+          description: Task deleted successfully
+        404:
+          description: Task not found
+          schema:
+            $ref: '#/definitions/ExceptionDto'
+  /tasks:
+    get:
+      tags:
+        - Task
+      summary: Get tasks grouped by status
+      operationId: getTasksByStatus
+      responses:
+        200:
+          description: Tasks retrieved successfully
+          schema:
+            $ref: '#/definitions/TaskStatus'
+        404:
+          description: Tasks not found
+          schema:
+            $ref: '#/definitions/ExceptionDto'
+  /times:
+    get:
+      tags:
+        - Time
+      summary: Get average processing time for all tasks
+      operationId: getAverageProcessingTime
+      responses:
+        200:
+          description: Average processing time retrieved successfully
+          schema:
+            type: number
+            format: double
+
+  /times/{number}:
+      get:
+        tags:
+          - Time
+        summary: Get processing time map for a task by number
+        operationId: getProcessingTimeMapForTask
+        parameters:
+          - name: number
+            in: path
+            required: true
+            type: string
+        responses:
+          200:
+            description: Processing time map retrieved successfully
+            schema:
+              $ref: '#/definitions/TaskStatusTimeMap'
+          404:
+            description: Task Not Found
+            schema:
+              $ref: '#/definitions/ExceptionDto'
+
+  /times/{number}/{status}:
+      get:
+        tags:
+          - Time
+        summary: Get processing time for a task by number and status
+        operationId: getProcessingTimeForTaskByStatus
+        parameters:
+          - name: number
+            in: path
+            required: true
+            type: string
+          - name: status
+            in: path
+            required: true
+            type: string
+        responses:
+          200:
+            description: Processing time retrieved successfully
+            schema:
+              type: number
+              format: double
+          404:
+            description: Task Not Found
+            schema:
+              $ref: '#/definitions/ExceptionDto'
+
+  /times/status:
+      get:
+        tags:
+          - Time
+        summary: Get average processing time by status
+        operationId: getAverageProcessingTimeByStatus
+        responses:
+          200:
+            description: Average processing time by status retrieved successfully
+            schema:
+              $ref: '#/definitions/TaskStatusTimeMap'
+
+
+
+
